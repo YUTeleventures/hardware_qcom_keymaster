@@ -1,6 +1,7 @@
 ifeq ($(TARGET_HW_KEYMASTER_V03),true)
 LOCAL_PATH := $(call my-dir)
 
+ifneq ($(TARGET_PROVIDES_KEYMASTER),true)
 ifneq ($(filter msm8960 msm8226 msm8974 msm8610 msm8084 apq8084 msm8916 msm8992 msm8994,$(TARGET_BOARD_PLATFORM)),)
 
 keymaster-def := -fvisibility=hidden -Wall
@@ -47,6 +48,7 @@ LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
 
 endif # TARGET_BOARD_PLATFORM
+endif # TARGET_PROVIDES_KEYMASTER
 else
 LOCAL_MODULE := keystore.qcom
 $(info Removing keymaster v0.3 bins)
